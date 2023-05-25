@@ -1,19 +1,12 @@
-// import { useState, useEffect } from 'react';
-
-import { useSelector } from 'react-redux';
 import ContactForm from './ContactForm/ContactForm';
 import ContactsList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import { RootState } from '../redux/store';
+import usePHBState from '../redux/selectors';
 import { IContact } from '../types';
 import AppStl from './App.module.css';
 
 export default function App() {
-  const filter = useSelector((state: RootState) => state.filter);
-  console.log('filter: ', filter);
-  const contacts = useSelector((state: RootState) => state.contacts);
-  console.log('contacts: ', contacts);
-
+  const { contacts, filter } = usePHBState();
   const getVisibleContacts = (contacts: IContact[]) => {
     return contacts.filter((contact) =>
       contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()),

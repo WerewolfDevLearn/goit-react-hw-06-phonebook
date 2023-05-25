@@ -1,6 +1,6 @@
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useDispatch } from 'react-redux';
+import usePHBState from '../../redux/selectors';
 import * as yup from 'yup';
 import { Add } from '../../redux/contactsSlices';
 
@@ -8,7 +8,7 @@ import { Add } from '../../redux/contactsSlices';
 import ContactFormStl from './ContactForm.module.css';
 
 // types
-import { IContact, IValues } from '../../types';
+import { IValues } from '../../types';
 // variables
 const initialValues = { person: '', number: '' };
 const phoneRegExp = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 });
 
 export default function ContactForm() {
-  const contacts: IContact[] = useSelector((state: RootState) => state.contacts);
+  const { contacts } = usePHBState();
   const dispatch = useDispatch();
   const onSubmitFormik = (values: IValues, { resetForm }: FormikHelpers<IValues>) => {
     if (

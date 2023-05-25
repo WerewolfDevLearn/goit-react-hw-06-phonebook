@@ -1,14 +1,10 @@
 import FilterStl from './Filter.module.css';
-import { RootState } from '../../redux/store';
+import usePHBState from '../../redux/selectors';
 import { ContactFilter } from '../../redux/filterSlices';
-import { useDispatch, useSelector } from 'react-redux';
-// interface Props {
-//   filter: string;
-//   onChangeFilter(e: React.ChangeEvent<HTMLInputElement>): void;
-// }
+import { useDispatch } from 'react-redux';
 
 export default function Filter() {
-  const filter = useSelector((state: RootState) => state.filter);
+  const { filter } = usePHBState();
   const dispatch = useDispatch();
   return (
     <div className={FilterStl.filterContainer}>

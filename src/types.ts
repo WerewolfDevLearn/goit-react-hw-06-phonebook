@@ -7,3 +7,8 @@ export interface IValues {
   person: string;
   number: string;
 }
+
+export interface ISate {
+  contacts: IContact[];
+  filter: string;
+}
